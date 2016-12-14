@@ -1,0 +1,106 @@
+/* css front */
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(35, 0, 250) !important;
+  text-align: center;
+  font-family: 'Molle', cursive !important;
+}
+
+/* partie chat */
+
+.form {
+  background: rgb(15, 196, 245);
+  margin: 5em auto;
+  padding: 2em;
+  width: 60%;
+  border-radius: 2em;
+  box-shadow: 0.2em 0.2em 0.2em 0.2em rgb(9, 118, 246);
+}
+
+.stock-msg {
+  background: rgb(170, 239, 244);
+}
+
+textarea {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.env-text {
+  background: rgb(34, 8, 242);
+  border-color: rgb(154, 11, 241);
+  border-radius: 1em;
+  width: 15%;
+  height: 3em;
+  color: white;
+  font-size: 1.5em;
+  float: right;
+  cursor: pointer;
+}
+
+/* partie formulaire */
+
+label {
+  padding-left: 10%;
+}
+
+.input {
+  display: block;
+  margin: 1em auto !important;
+  width: 80%;
+}
+
+.button {
+  background: rgb(34, 8, 242);
+  border-color: rgb(154, 11, 241);
+  border-radius: 1em;
+  width: 90%;
+  height: 3em;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scaleX(1.2);
+}
+
+.error {
+  border: 0.2em solid red;
+}
+
+/* partie comfirmation */
+
+.inscription {
+  text-align: center;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin: 1.5em auto;
+  color: rgb(23, 24, 111) !important;
+  font-size: 2em;
+  text-decoration: none !important;
+}
+
+footer {
+  background: rgb(15, 196, 245);
+  padding: 2em;
+}
