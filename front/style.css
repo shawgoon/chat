@@ -11,6 +11,17 @@ html {
   box-sizing: inherit;
 }
 
+.hide {
+  display: none !important;
+}
+
+.alert {
+  text-align: center;
+  border: 0.2em dotted red !important;
+  background: rgb(251, 187, 178);
+  color: red;
+}
+
 h1,
 h2,
 h3,
@@ -23,6 +34,21 @@ h6 {
 }
 
 /* partie chat */
+
+.stock-msg {
+  display: flex;
+  padding: 1em;
+  border: 0.1 solid black;
+  min-height: 20em;
+}
+
+.msg {
+  width: 80%;
+}
+
+.users {
+  width: 20%;
+}
 
 .form {
   background: rgb(15, 196, 245);

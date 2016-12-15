@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Shrikhand" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script
+    src="http://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <!-- <script src="master.js"></script> -->
+    <script src="app.js"></script>
+    <title>chat</title>
+  </head>
+  <body>
+    <h1>Mon chat</h1>
+    <section class="form login">
+      <h2>Login</h2>
+      <div class="alert hide"></div>
+      <form id="login">
+        <label for="">Pseudo</label>
+        <input id="pseudo" class="input" type="text" name="pseudo" value="">
+        <label for="">Mot de passe</label>
+        <input id="passlog" class="input" type="password" name="password" value="">
+        <input type="hidden" name="" value="">
+        <input class="button input" type="submit" value="connection">
+      </form>
+    </section>
+    <section class="form chat hide" >
+      <h3>Bonjour, </h3>
+      <div class="">
+        <div class="stock-msg">
+          <div class="msg">Chat !
+            <ul class="chat_msg"></ul>
+          </div>
+          <div class="users">Userlist
+            <ul class="chat_user"></ul>
+          </div>
+        </div>
+        <hr>
+        <form class="">
+          <label for="">Entrer votre message ici</label>
+          <textarea name="name" rows="3" cols="80"></textarea>
+          <input class="env-text" type="submit" name="msg" value="envoyer">
+        </form>
+      </div>
+    </section>
+    <footer><h3>Le chat en vogue</h3></footer>
+  </body>
+</html>
