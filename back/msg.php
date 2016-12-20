@@ -21,7 +21,7 @@ if (!empty($_POST)) {
   $insertQuery = $instance -> prepare ("INSERT INTO message (contenu, userId) VALUES (:contenu, :userId)");
   $insertQuery -> execute(array(
     "contenu" => $_POST['contenu'],
-    "userId" => $_POST['userId']
+    "utilisateur_id" => $_POST['utilisateur_id']
   ));
   // on retourne un success
   header('Content-Type: application/json');
@@ -29,7 +29,7 @@ if (!empty($_POST)) {
   // je formate une réponse en JSON
   echo json_encode(array("success" => true));
 } else {
-// recup de la liste des messages  
+// recup de la liste des messages
 $msgList = $instance->query('SELECT * FROM message')->fetchAll();
 // je renvois un réponse au front
 header('Content-Type: application/json');

@@ -103,7 +103,7 @@ $(document).ready(function() {
     $.ajax({
       method: "POST",
       url: "http://localhost/j1/chat/back/msg.php",
-      data: {"contenu" : formatDatas['message'], "userId" : user.id},
+      data: {"contenu" : formatDatas['message'], "utilisateur_id" : user.id},
       success: function(res) {
         if (res.success) {
           // reset la liste des messages
@@ -114,7 +114,7 @@ $(document).ready(function() {
       }
     });
   });
-  
+
   // mise à jour automatique des massages
   setInterval(function(){
     updateMessages();
