@@ -1,15 +1,18 @@
 // on attend la fin de chargement de la page
 $(document).ready(function() {
+  // variable global, utile pour stocker l'utilisateur en cours
+  var user = null;
+
   // quand le formulaire est envoyé
   $("#login").on('submit', function(e) {
-    e.preventDefault();
-    // on stop l'envoi du formulaire
+    e.preventDefault();// on stop l'envoi du formulaire
     var datas = $(this).serializeArray();
     // on récupère les données du formulaire et on les formate
     var formatDatas = {};
     for(var i=0; i < datas.length; i++) {
       formatDatas[datas[i]['name']] = datas[i]['value'];
     }
+
     // on passe les données à notre fonction de connection
     login(formatDatas);
   });
@@ -23,6 +26,8 @@ $(document).ready(function() {
       success: function(response) {
         // si l'utilisateur est connecté
         if (response.success) {
+          // on sauvegarde en local l'utilisateur
+          user = response.user;
           // on affiche le chat
           displayChat();
         } else {
@@ -34,7 +39,8 @@ $(document).ready(function() {
       }
     });
   };
-// cacher le formulaire et afficher le chat
+
+  // cacher le formulaire et afficher le chat
   var displayChat = function() {
     // on cache le formulaire
     $('.login').addClass('hide');
@@ -45,16 +51,20 @@ $(document).ready(function() {
     // on affiche la liste des msg
     updateMessages();
   };
+
   // reset de la liste d'utilisateur
   var updateUserList = function() {
     var $userList = $(".chat_user");
+    // on retire les données actuelles
+      $userList.empty();
     // on récupère la liste des utilisateurs
     $.ajax({
       method: "GET",
       url: "http://localhost/j1/chat/back/user.php",
       success: function(res) {
         // (res) contient la réponse du serveur
-        var users = res.users; //on récup la liste des utilisateurs renvoyé par le serveur
+        var users = res.users;
+        //on récup la liste des utilisateurs renvoyé par le serveur
         for (var i = 0; i < users.length; i++) {
           // on ajoute chaque utilisateur à notre liste HTML
           $userList.append('<li>' + users[i]['pseudo'] + '</li>');
@@ -62,6 +72,8 @@ $(document).ready(function() {
       }
     });
   };
+
+  // reset la liste de message
   var updateMessages = function() {
     var $msgList = $(".chat_msg");
     // on récup la liste des msg
@@ -77,4 +89,34 @@ $(document).ready(function() {
       }
     });
   };
+
+  // message form handler
+  $(".chat_form").on('submit', function(event) {
+    event.preventDefault(); // on stop l'envoi de formulaire
+    var datas = $(this).serializeArray(); // on récup les données du formulaireon format correctement les données de sérializeArray e, objet JSON
+    var formatDatas = {};
+    for (var i = 0; i <datas.length; i++) {
+      formatDatas[datas[i]['name']] = datas[i]['value'];
+    }
+
+    // on envoi le message au serveur
+    $.ajax({
+      method: "POST",
+      url: "http://localhost/j1/chat/back/msg.php",
+      data: {"contenu" : formatDatas['message'], "userId" : user.id},
+      success: function(res) {
+        if (res.success) {
+          // reset la liste des messages
+          updateMessages();
+          // vider le formulaire
+          $(".chat_form").val("");
+        }
+      }
+    });
+  });
+  
+  // mise à jour automatique des massages
+  setInterval(function(){
+    updateMessages();
+  }, 10000);
 });

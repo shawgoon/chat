@@ -12,11 +12,29 @@ try
 } catch (PDOExeption $e){
   die('Erreur :'.$e->getMessage());
 }
-// récupération de la liste des messages
+
+// si le poste n'est pas vide cela veut direque l'on envoi des données =>
+// on ajoute un massage
+// sinon on récup de la liste des messages
+if (!empty($_POST)) {
+  // on ajoute le msg en BDD
+  $insertQuery = $instance -> prepare ("INSERT INTO message (contenu, userId) VALUES (:contenu, :userId)");
+  $insertQuery -> execute(array(
+    "contenu" => $_POST['contenu'],
+    "userId" => $_POST['userId']
+  ));
+  // on retourne un success
+  header('Content-Type: application/json');
+  // je dis que ma réponse est du JSON pas HTML
+  // je formate une réponse en JSON
+  echo json_encode(array("success" => true));
+} else {
+// recup de la liste des messages  
 $msgList = $instance->query('SELECT * FROM message')->fetchAll();
 // je renvois un réponse au front
 header('Content-Type: application/json');
 // je dis que ma réponse est du JSON pas HTML
 // je formate une réponse en JSON
 echo json_encode(array("success" => true, "msg" => $msgList));
+}
  ?>
