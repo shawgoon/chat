@@ -49,4 +49,4 @@ if($user) {
   header('Content-Type: application/json');
   // j'indique que ma réponse contien du JSON et non du HTML
   // je formate une réponse en JSON
-  echo json_encode(array("success" => $userConnected));
+  echo json_encode(array("success" => $userConnected, "utilisateur" => $user));

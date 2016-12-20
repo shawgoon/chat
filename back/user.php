@@ -18,4 +18,4 @@ $userList = $instance->query('SELECT pseudo FROM utilisateur')->fetchAll();
 header('Content-Type: application/json');
 // j'indique que ma réponse contien du JSON et non du HTML
 // je formate une réponse en JSON
-echo json_encode(array("success" => true, "users" => $userList));
+echo json_encode(array("success" => true, "utilisateur" => $userList));

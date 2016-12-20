@@ -65,14 +65,14 @@ h6 {
 
 textarea {
   margin: 0 auto;
-  width: 80%;
+  max-width: 80%;
 }
 
 .env-text {
   background: rgb(34, 8, 242);
   border-color: rgb(154, 11, 241);
   border-radius: 1em;
-  width: 15%;
+  min-width: 15% !important;
   height: 3em;
   color: white;
   font-size: 1.5em;

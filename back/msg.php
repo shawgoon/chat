@@ -13,16 +13,17 @@ try
   die('Erreur :'.$e->getMessage());
 }
 
-// si le poste n'est pas vide cela veut direque l'on envoi des données =>
+// si le poste n'est pas vide cela veut dire que l'on envoi des données =>
 // on ajoute un massage
 // sinon on récup de la liste des messages
 if (!empty($_POST)) {
   // on ajoute le msg en BDD
-  $insertQuery = $instance -> prepare ("INSERT INTO message (contenu, userId) VALUES (:contenu, :userId)");
+  $insertQuery = $instance -> prepare ("INSERT INTO message (contenu, utilisateur_id, /*date*/) VALUES (:contenu, :utilisateur_id, /*:date*/)");
   $insertQuery -> execute(array(
     "contenu" => $_POST['contenu'],
-    "utilisateur_id" => $_POST['utilisateur_id']
-  ));
+    "utilisateur_id" => $_POST['utilisateur_id'],
+    //"date" => $_POST['date']
+  ));var_dump($_POST); die();
   // on retourne un success
   header('Content-Type: application/json');
   // je dis que ma réponse est du JSON pas HTML
