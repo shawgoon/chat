@@ -7,7 +7,7 @@ $dbName = "chat";
 try
 {
   $instance = new PDO ("mysql:host=".$host.";dbname=".$dbName, $user, $mdp);
-} catch (PDOExeption $e){
+} catch (PDOException $e){
   die('Erreur :'.$e->getMessage());
 } ?>
 
