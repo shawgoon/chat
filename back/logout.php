@@ -16,4 +16,4 @@ try
 unset($_SESSION['user']);
  ?>
 <h4>Vous êtes déconnecté !</h4>
-<a href="front/index.php">Vous connectez</a>
+<a href="front/index.html">Vous connectez</a>

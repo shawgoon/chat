@@ -75,17 +75,17 @@ $(document).ready(function() {
   // reset la liste de message
   var updateMessages = function() {
     var $msgList = $(".chat_msg");
-    // on retire les données actuelles
-    $msgList.empty();
     // on récup la liste des msg
     $.ajax({
       method: "GET",
       url:"http://localhost/j1/chat/back/msg.php",
       success: function(res) {
+        // on retire les données actuelles
+        $msgList.empty();
         var msg = res.msg; //on récup les msg renvoyé par le serveur
         for (var i = 0; i < msg.length; i++) {
           // on ajout chaque message sur notre page html
-          $msgList.append('<li>' + msg[i]['date'] + "<br> " + msg[i]['contenu'] + "</li>");console.log(msg);
+          $msgList.append('<li>' + msg[i]['date'] + "<br> " + msg[i]['contenu'] + "</li>");
         }
       }
     });
@@ -94,30 +94,34 @@ $(document).ready(function() {
   // création d'un nouveau message
   $(".chat_form").on('submit', function(event) {
     event.preventDefault(); // on stop l'envoi de formulaire
-    var datas = $(this).serializeArray(); // on récup les données du formulaire on format correctement les données de sérializeArray en objet JSON
-    var formatDatas = {};
-    for (var i = 0; i <datas.length; i++) {
-      formatDatas[datas[i]['name']] = datas[i]['value'];console.log(formatDatas);
-    }
-    // on envoi le message au serveur
+    var datas = $(this).serialize(); // on récup les données du formulaire on format correctement les données de sérializeArray en objet JSON
+    datas += "&utilisateur_id="+utilisateur.id;
+    console.log(datas);
+    // var formatDatas = {};
+    // for (var i = 0; i <datas.length; i++) {
+    //   formatDatas[datas[i]['name']] = datas[i]['value'];
+    // }console.log(datas[i]);
+    //on envoi le message au serveur
     $.ajax({
       method: "POST",
       url: "http://localhost/j1/chat/back/msg.php",
-      data: {"contenu" : formatDatas['message'], "utilisateur_id" : utilisateur.id},
-      success: function(res) {console.log(res);
+      data: datas,
+      success: function(res) {
+        console.log({"contenu" : datas, "utilisateur_id" : utilisateur.id});
         if (res.success) {
           // reset la liste des messages
           updateMessages();
           // vider le formulaire
           $(".chat_form textarea").val("");
         }
-      }
+      },
     });
-  });
 
+
+});
   // mise à jour automatique des messages
-  // setInterval(function(){
-  //   updateMessages();
-  //   updateUserList();
-  // }, 10000);
+  setInterval(function(){
+    updateMessages();
+    updateUserList();
+  }, 10000);
 });

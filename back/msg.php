@@ -18,13 +18,13 @@ try
 // sinon on récup de la liste des messages
 if (!empty($_POST)) {
   // on ajoute le msg en BDD
-  $insertQuery = $instance -> prepare ("INSERT INTO message (contenu, utilisateur_id, /*date*/) VALUES (:contenu, :utilisateur_id, /*:date*/)");
+  $insertQuery = $instance -> prepare ("INSERT INTO message (contenu, utilisateur_id) VALUES (:contenu, :utilisateur_id)");
   $insertQuery -> execute(array(
     "contenu" => $_POST['contenu'],
-    "utilisateur_id" => $_POST['utilisateur_id'],
-    //"date" => $_POST['date']
-  ));var_dump($_POST); die();
+    "utilisateur_id" => $_POST['utilisateur_id']
+  ));
   // on retourne un success
+
   header('Content-Type: application/json');
   // je dis que ma réponse est du JSON pas HTML
   // je formate une réponse en JSON
@@ -38,4 +38,5 @@ header('Content-Type: application/json');
 // je formate une réponse en JSON
 echo json_encode(array("success" => true, "msg" => $msgList));
 }
+
  ?>
